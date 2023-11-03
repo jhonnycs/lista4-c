@@ -10,7 +10,7 @@ int main() {
     int kSize = sizeof(K) / sizeof(K[0]);
 
     for (int i = 0; i < kSize; i++) {
-        printf("Digite o número %d:\n> ", i);
+        printf("Digite o número %d:\n> ", i+1);
         scanf("%d", &K[i]);
     }
 

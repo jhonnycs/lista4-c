@@ -13,7 +13,7 @@ int main() {
     int vetorSize = sizeof(vetor) / sizeof(vetor[0]);
 
     for (int i = 0; i < vetorSize; i++) {
-        printf("Digite o número %d:\n> ", i);
+        printf("Digite o número %d:\n> ", i+1);
         scanf("%d", &vetor[i]);
     }
 
