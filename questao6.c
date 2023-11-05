@@ -12,65 +12,77 @@
     7- dizer se possui números repetidos (e quais são).
 */
 
-void showArray();
-void showOptions();
-void readOption(int *opt);
-void showReverseArray(int *vetor);
-void showMediana(int *vetor);
-int product(int *vetor);
-int percentageEvenNumbers(int *vetor);
-void showOddNumbers();
-int sumOddNumbers(int *vetor);
+void mostrarArray();
+void mostrarOpcoes();
+void lerOpcao(int *opt);
+void mostrarArrayReverso(int *vetor);
+void mostrarMediana(int *vetor);
+int produtoTodosOsNumeros(int *vetor);
+float porcentagemPares(int *vetor);
+int verificaSeAindaHaImpar(int iteradorAtual, int *vetor);
+void mostrarImpares();
+int somaDosImpares(int *vetor);
+void numerosRepetidos(int *vetor, float *vetorNumerosRepetidos);
+void mostrarArrayComRepetidos(float *vetorNumerosRepetidos);
+void preencherArray(int *vetor);
+void inserirNoArray(float element, float *array);
 
-#define ARRAY_SIZE 5
+#define ARRAY_SIZE 4
+float valorGenerico = 0.1;
 
 int main() {
     int opt;
     int vetor[ARRAY_SIZE];
-    showOptions();
+    mostrarOpcoes();
 
-    readOption(&opt);
+    lerOpcao(&opt);
+
+    if (opt > 0) {
+        preencherArray(vetor);
+    }
 
     switch (opt) {
     case 0:
-        printf("Programa finalizado");
+        printf("Finalizando programa");
         break;
     case 1:
-        showArray(vetor);
+        mostrarArray(vetor);
         break;
     case 2:
-        showReverseArray(vetor);
+        mostrarArrayReverso(vetor);
         break;
     case 3:
-        showMediana(vetor);
+        mostrarMediana(vetor);
         break;
     case 4:
-        printf("Produto de todos os valores: %d", product(vetor));
+        printf("Produto de todos os valores: %d", produtoTodosOsNumeros(vetor));
         break;
     case 5:
-        printf("Porcentagem de valores pares positivos: %d", percentageEvenNumbers(vetor));
+        printf("Porcentagem de valores pares positivos: %.1f%%", porcentagemPares(vetor));
         break;
     case 6:
         printf("Números ímpares:\n");
-        showOddNumbers(vetor);
-        printf("Soma de todos os números ímpares: %d", sumOddNumbers(vetor));
+        mostrarImpares(vetor);
+        printf("Soma de todos os números ímpares: %d", somaDosImpares(vetor));
         break;
     case 7:
-
+        float vetorNumerosRepetidos[ARRAY_SIZE];
+        numerosRepetidos(vetor, vetorNumerosRepetidos);
+        float valorGenerico = 0.1;
+        if (vetorNumerosRepetidos[0] != valorGenerico) {
+            printf("O array digitado possui números repetidos. São eles:\n");
+            mostrarArrayComRepetidos(vetorNumerosRepetidos);
+        } else {
+            printf("O vetor digitado não possui números repetidos.\n");
+        }
         break;
     }
 
     return 0;
 }
 
-void showArray(int *vetor) {
-    for (int i = 0; i < ARRAY_SIZE; i++) {
-        printf("Elemento %d: %d", i, vetor[i]);
-    }
-}
-
-void showOptions() {
-    printf("\nDigite o número para tomar uma ação:\n");
+void mostrarOpcoes() {
+    printf("\nDigite o número para tomar uma ação (você poderá digitar o vetor logo em seguida):\n");
     printf("0- finalizar o programa;\n");
     printf("1- mostrar o vetor na ordem como ele foi lido;\n");
     printf("2- mostrar o vetor na ordem inversa, do último até o primeiro;\n");
@@ -82,7 +94,7 @@ void showOptions() {
     printf("\n> ");   
 }
 
-void readOption(int *opt) {
+void lerOpcao(int *opt) {
     int n;
     scanf("%d", &n);
 
@@ -93,24 +105,37 @@ void readOption(int *opt) {
     *opt = n;
 }
 
-void showReverseArray(int *vetor) {
-    for (int i = 0; i < ARRAY_SIZE / 2; i++) {
-        int aux = vetor[i];
-        vetor[i] = vetor[ARRAY_SIZE-i];
-        vetor[ARRAY_SIZE-i] = aux;
+void preencherArray(int *vetor) {
+    for (int i = 0; i < ARRAY_SIZE; i++) {
+        printf("Digite o valor %d:\n> ", i+1);
+        scanf("%d", &vetor[i]);
+    }
+    printf("\n");
+}
+
+void mostrarArray(int *vetor) {
+    for (int i = 0; i < ARRAY_SIZE; i++) {
+        printf("Elemento %d: %d\n", i+1, vetor[i]);
     }
 }
 
-void showMediana(int *vetor) {
-    int mediana;
+void mostrarArrayReverso(int *vetor) {
+    for (int i = ARRAY_SIZE-1; i >= 0; i--) {
+        printf("Elemento %d: %d\n", i+1, vetor[i]);
+    }
+}
+
+void mostrarMediana(int *vetor) {
+    float mediana;
     if (ARRAY_SIZE % 2 == 0) {
-        mediana = (vetor[ARRAY_SIZE / 2 - 1] + vetor[ARRAY_SIZE/2]) / 2;
+        mediana = (vetor[ARRAY_SIZE / 2 - 1] + vetor[ARRAY_SIZE/2]) / (float)2;
     } else {
         mediana = vetor[ARRAY_SIZE / 2];
     }
+    printf("A mediana é %.1f", mediana);
 }
 
-int product(int *vetor) {
+int produtoTodosOsNumeros(int *vetor) {
     int result = 1;
 
     for (int i = 0; i < ARRAY_SIZE; i++) {
@@ -120,26 +145,75 @@ int product(int *vetor) {
     return result;
 }
 
-int percentageEvenNumbers(int *vetor) {
+float porcentagemPares(int *vetor) {
     float quantNums = 0.0;
     for (int i = 0; i < ARRAY_SIZE; i++) {
         if (vetor[i] % 2 == 0 && vetor[i] > 0) quantNums++;
     }
-    return quantNums / (float)ARRAY_SIZE * 100;
+    return quantNums / ARRAY_SIZE * 100.0;
 }
 
-void showOddNumbers(int *vetor) {
+int verificaSeAindaHaImpar(int iteradorAtual, int *vetor) {
+    for (int i = iteradorAtual+1; i < ARRAY_SIZE; i++) {
+        if (vetor[i] % 2 == 1) return 1;
+    }
+    return 0;
+}
+
+void mostrarImpares(int *vetor) {
     for (int i = 0; i < ARRAY_SIZE; i++) {
         if (vetor[i] % 2 == 1) {
-            printf("%d\n", vetor[i]);
+            printf("%d%s", vetor[i], verificaSeAindaHaImpar(i, vetor) ? ", " : "\n");
         }
     }   
 }
 
-int sumOddNumbers(int *vetor) {
+int somaDosImpares(int *vetor) {
     int sum = 0;
     for (int i = 0; i < ARRAY_SIZE; i++) {
-        sum = sum + vetor[i];
+        if (vetor[i] % 2 == 1) {
+            sum = sum + vetor[i];
+        }
     }
     return sum;
+}
+
+void inserirNoArray(float element, float *array) {
+    for (int i = 0; i < ARRAY_SIZE; i++) {
+        if (array[i] == valorGenerico) {
+            array[i] = element;
+            break;
+        }       
+    }
+}
+
+int estaNoArray(float num, float *vetor) {
+    for (int i = 0; i < ARRAY_SIZE; i++) {
+        if (num == vetor[i]) return 1;
+    }
+    return 0;
+}
+
+void numerosRepetidos(int *vetor, float *vetorNumerosRepetidos) {
+    int num;
+
+    for (int i = 0; i < ARRAY_SIZE; i++) {
+        vetorNumerosRepetidos[i] = valorGenerico;
+    }
+
+    for (int i = 0; i < ARRAY_SIZE; i++) {
+        num = vetor[i];
+        for (int j = 0; j < ARRAY_SIZE; j++) {
+            if (vetor[j] == num && j != i && !estaNoArray((float)num, vetorNumerosRepetidos)) {
+                inserirNoArray((float)num, vetorNumerosRepetidos);
+            }
+        }
+    }
+}
+
+void mostrarArrayComRepetidos(float *vetorNumerosRepetidos) {
+    for (int i = 0; i < ARRAY_SIZE; i++) {
+        if (vetorNumerosRepetidos[i] == valorGenerico) break;
+        printf("%.0f%s", vetorNumerosRepetidos[i], vetorNumerosRepetidos[i+1] == valorGenerico ? "\n" : ", ");
+    }
 }

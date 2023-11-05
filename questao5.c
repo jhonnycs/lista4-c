@@ -6,7 +6,7 @@
     números primos de K. Escrever o vetor P na tela.
 */
 
-void insertInArray(int element, int* array);
+void inserirNoArray(int element, int* array);
 
 #define K_P_SIZE 15
 
@@ -38,7 +38,7 @@ int main() {
         }
 
         if (!isntPrime && K[i] != 1) {
-            insertInArray(K[i], P);
+            inserirNoArray(K[i], P);
         }
     }
 
@@ -53,7 +53,7 @@ int main() {
     return 0;
 }
 
-void insertInArray(int element, int* array) {
+void inserirNoArray(int element, int* array) {
     for (int i = 0; i < K_P_SIZE; i++) {
         if (array[i] == -1) {
             array[i] = element;
