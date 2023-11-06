@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 /*
     Dada uma string digitada pelo usuário, identificar
@@ -13,26 +14,20 @@ int main() {
     printf("Digite uma palavra:\n> ");
     scanf("%s", palavra);
 
-    if (verificarPalindromo(palavra)) {
-        printf("A palavra é palíndromo");
-    } else {
-        printf("A palavra não é palíndromo");
-    }
+    verificarPalindromo(palavra);
+
     return 0;
 }
 
 int verificarPalindromo(char *palavra) {
-    char palavra1[ARRAY_SIZE], palavra2[ARRAY_SIZE];
-    int tamanhoPalavra = sizeof(palavra);
+    int tamanhoPalavra = strlen(palavra);
 
-    for (int i=0; i<tamanhoPalavra; i++) {
-        palavra1[i] = palavra[i];
-        palavra2[i] = palavra[tamanhoPalavra-i-1];
+    for (int i = 0; i < tamanhoPalavra; i++) {
+        if (palavra[i] != palavra[tamanhoPalavra - i - 1]) {
+            printf("A palavra %s não é palíndromo", palavra);
+            return 0;
+        }
     }
-
-    if (palavra1==palavra2) {
-        return 1;
-    } else {
-        return 0;
-    }
+    printf("A palavra %s é palíndromo", palavra);
+    return 1;
 }
