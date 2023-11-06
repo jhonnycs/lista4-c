@@ -15,35 +15,71 @@
 
 */
 
+void ordenarArray(float *array, int arraySize);
+void lerTamanhoSequencia(int *tamanho);
+void lerArray(float *array, int tamanho);
+void contarOcorrencias(float *array, int tamanho);
+
 int main() {
     int quantValores;
     float sequencia[quantValores];
 
-    printf("Digite o número de dígitos das sequências de números:\n> ");
-    scanf("%d", &quantValores);
+    lerTamanhoSequencia(&quantValores);
 
-    while (quantValores < 1) {
+    lerArray(sequencia, quantValores);
+
+    ordenarArray(sequencia, quantValores);
+
+    contarOcorrencias(sequencia, quantValores);
+
+    return 0;
+}
+
+void lerTamanhoSequencia(int *tamanho) {
+    int n;
+    printf("Digite o número de dígitos da sequência de números:\n> ");
+    scanf("%d", &n);
+
+    while (n < 1) {
         printf("Por favor, digite um número válido de dígitos:\n> ");
-        scanf("%d", &quantValores);
+        scanf("%d", &n);
     }
 
-    for (int i = 0; i < quantValores; i++) {
+    *tamanho = n;
+}
+
+void lerArray(float *array, int tamanho) {
+    for (int i = 0; i < tamanho; i++) {
         printf("Digite o número %d:\n> ", i + 1);
-        scanf("%f", &sequencia[i]);
+        scanf("%f", &array[i]);
     }
+}
 
-    for (int i = 0; i < quantValores; i++) {
+void ordenarArray(float *array, int arraySize) {
+    for (int i = 1; i < arraySize; i++) {
+        if (array[i - 1] > array[i]) {
+            int aux = array[i];
+            int j = i;
+            while (j > 0 && array[j - 1] > array[j]) {
+                array[j] = array[j - 1];
+                array[j - 1] = aux;
+                j--;
+            }
+        }
+    }
+}
+
+void contarOcorrencias(float *array, int tamanho) {
+    for (int i = 0; i < tamanho; i++) {
         int quantOcorrencias = 0;
 
-        for (int j = 0; j < quantValores; j++) {
-            if (sequencia[i] == sequencia[j]) {
+        for (int j = 0; j < tamanho; j++) {
+            if (array[i] == array[j]) {
                 quantOcorrencias++;
             }
         }
 
-        printf("\nO número %.2f ocorre %d vezes", sequencia[i],
-               quantOcorrencias);
+        printf("\nO número %.2f ocorre %d vezes", array[i], quantOcorrencias);
+        i += quantOcorrencias - 1;
     }
-
-    return 0;
 }

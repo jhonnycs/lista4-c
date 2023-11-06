@@ -1,5 +1,5 @@
-#include <stdio.h>
 #include <ctype.h>
+#include <stdio.h>
 
 /*
     Ler um vetor G de 10 caracteres que representa o gabarito de uma prova.
@@ -13,12 +13,27 @@
 #define GABARITO_RESPOSTA_SIZE 10
 #define NUM_ALUNOS 50
 
+void capturarGabaritoQuestao(char *gabarito);
+void capturarRespostaAluno(char *respostas, int aluno);
+int compararRespostaComGabarito(char *gabarito, char *respostas);
+void calcularNotaAlunos(char *gabarito, char *respostas);
+
 int main() {
     char gabarito[GABARITO_RESPOSTA_SIZE];
     char respostas[GABARITO_RESPOSTA_SIZE];
 
+    capturarGabaritoQuestao(gabarito);
+
+    printf("\n");
+
+    calcularNotaAlunos(gabarito, respostas);
+
+    return 0;
+}
+
+void capturarGabaritoQuestao(char *gabarito) {
     for (int i = 0; i < GABARITO_RESPOSTA_SIZE; i++) {
-        printf("Digite o gabarito da questão %d:\n> ", i+1);
+        printf("Digite o gabarito da questão %d:\n> ", i + 1);
         scanf(" %c", &gabarito[i]);
 
         while (isalpha(gabarito[i]) != 2) {
@@ -26,33 +41,42 @@ int main() {
             scanf(" %c", &gabarito[i]);
         }
     }
-    printf("\n");
-    for (int i = 0; i < NUM_ALUNOS; i++) {
-        int nota = 0;
-        for (int j = 0; j < GABARITO_RESPOSTA_SIZE; j++) {
-            printf("Digite a resposta da questão %d do aluno número %d:\n> ", j+1, i+1);
-            scanf(" %c", &respostas[j]);
+}
 
-            while (isalpha(respostas[j]) != 2) {
+void capturarRespostaAluno(char *respostas, int aluno) {
+    for (int i = 0; i < GABARITO_RESPOSTA_SIZE; i++) {
+        printf("Digite a resposta da questão %d do aluno número %d:\n> ", i + 1,
+               aluno + 1);
+        scanf(" %c", &respostas[i]);
+
+        while (isalpha(respostas[i]) != 2) {
             printf("Por favor, digite uma letra minúscula:\n> ");
-            scanf(" %c", &respostas[j]);
+            scanf(" %c", &respostas[i]);
         }
-        }
+    }
+}
 
-        for (int j = 0; j < GABARITO_RESPOSTA_SIZE; j++) {
-            if (gabarito[j] == respostas[j]) nota++;
-        }
+int compararRespostaComGabarito(char *gabarito, char *respostas) {
+    int nota = 0;
 
-        printf("\nNota do aluno %d: %d\n", i+1, nota);
+    for (int i = 0; i < GABARITO_RESPOSTA_SIZE; i++) {
+        if (gabarito[i] == respostas[i]) nota++;
+    }
+    return nota;
+}
+
+void calcularNotaAlunos(char *gabarito, char *respostas) {
+    for (int i = 0; i < NUM_ALUNOS; i++) {
+        capturarRespostaAluno(respostas, i);
+        int nota = compararRespostaComGabarito(gabarito, respostas);
+
+        printf("\nNota do aluno %d: %d\n", i + 1, nota);
 
         if (nota >= 6) {
-            printf("Aluno %d aprovado", i+1);
+            printf("Aluno %d aprovado", i + 1);
         } else {
-            printf("Aluno %d reprovado", i+1);
+            printf("Aluno %d reprovado", i + 1);
         }
-
-        nota = 0;
-        printf("\n");
     }
-    return 0;
+    printf("\n");
 }
