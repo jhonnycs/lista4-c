@@ -115,17 +115,32 @@ void preencherArray(int *vetor) {
 
 void mostrarArray(int *vetor) {
     for (int i = 0; i < ARRAY_SIZE; i++) {
-        printf("Elemento %d: %d\n", i+1, vetor[i]);
+        printf("%d ", vetor[i]);
     }
 }
 
 void mostrarArrayReverso(int *vetor) {
     for (int i = ARRAY_SIZE-1; i >= 0; i--) {
-        printf("Elemento %d: %d\n", i+1, vetor[i]);
+        printf("%d ", vetor[i]);
+    }
+}
+
+void ordenarArray(int *vetor) {
+    for (int i = 1; i < ARRAY_SIZE; i++) {
+        if (vetor[i-1] > vetor[i]) {
+            int aux = vetor[i];
+            int j = i;
+            while (j > 0 && vetor[j-1] > vetor[j])  {
+                vetor[j] = vetor[j-1];
+                vetor[j-1] = aux;
+                j--;
+            }
+        }
     }
 }
 
 void mostrarMediana(int *vetor) {
+    ordenarArray(vetor);
     float mediana;
     if (ARRAY_SIZE % 2 == 0) {
         mediana = (vetor[ARRAY_SIZE / 2 - 1] + vetor[ARRAY_SIZE/2]) / (float)2;
