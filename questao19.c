@@ -8,11 +8,11 @@
     Saída: Temos que a palavra ocorre 4 vezes na frase.
 */
 
-#define FRASE_SIZE 500
+#define FRASE_SIZE 200
 #define PALAVRA_SIZE 40
 
 int contarPalavras(char *palavra, char *frase);
-int contarPalavras2(char *palavra, char *frase);
+void removerEnter(char *string);
 
 int main() {
     char frase[FRASE_SIZE];
@@ -23,48 +23,40 @@ int main() {
     printf("\nDigite a palavra para contá-la na frase:\n> ");
     fgets(palavra, PALAVRA_SIZE, stdin);
 
-    int quantPalavras = contarPalavras(palavra, frase);
+    removerEnter(frase);
+    removerEnter(palavra);
 
-    frase[strcspn(frase, "\n")] = '\0';
-    palavra[strcspn(palavra, "\n")] = '\0';
+    int quantPalavras = contarPalavras(palavra, frase);
 
     printf("\nA palavra %s apareceu %d vezes na frase.", palavra,
            quantPalavras);
 
-    quantPalavras = contarPalavras2(palavra, frase);
-
-    printf("A palavra %s apareceu %d vezes na frase.", palavra, quantPalavras);
-
     return 0;
+}
+
+void removerEnter(char *string) {
+    int tamanho = strlen(string);
+
+    if (string[tamanho - 1] == '\n') {
+        string[tamanho - 1] = string[tamanho];
+    }
 }
 
 int contarPalavras(char *palavra, char *frase) {
     int tamanhoPalavra = strlen(palavra);
     int tamanhoFrase = strlen(frase);
+
     int quantPalavras = 0;
-    for (int i = 0; i < tamanhoFrase - tamanhoPalavra; i++) {
+    for (int i = 0; i < tamanhoFrase - tamanhoPalavra + 1; i++) {
         int coincidiu = 1;
 
-        for (int j = 0; j < tamanhoPalavra; j++) {
+        for (int j = 0; j < tamanhoPalavra - 1; j++) {
             if (frase[i + j] != palavra[j]) {
                 coincidiu = 0;
                 break;
             }
         }
-
         if (coincidiu) quantPalavras++;
     }
-    return quantPalavras;
-}
-
-int contarPalavras2(char *palavra, char *frase) {
-    int quantPalavras = 0;
-    char *posicao = frase;
-
-    while ((posicao = strstr(posicao, palavra)) != NULL) {
-        quantPalavras++;
-        posicao += strlen(palavra);
-    }
-
     return quantPalavras;
 }

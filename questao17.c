@@ -3,8 +3,8 @@
 #include <string.h>
 
 /*
-        Dada  uma  string  digitada  pelo  usuário, converta  a  primeira  letra
-   de cada  palavra  para maiúscula.
+    Dada  uma  string  digitada  pelo  usuário, converta  a  primeira  letra
+    de cada  palavra  para maiúscula.
 */
 
 #define ARRAY_SIZE 100
@@ -26,15 +26,15 @@ int main() {
 
 void toUpperCase(char *string) {
     int tamanho = strlen(string);
-    int maiuscula = 1;
+    int minuscula = 1;
     for (int i = 0; i < tamanho; i++) {
         if (isalpha(string[i])) {
-            if (maiuscula) {
+            if (minuscula) {
                 string[i] = toupper(string[i]);
-                maiuscula = 0;
+                minuscula = 0;
             }
         } else {
-            maiuscula = 1;
+            minuscula = 1;
         }
     }
 }
