@@ -12,7 +12,7 @@
     7- dizer se possui números repetidos (e quais são).
 */
 
-void mostrarArray();
+void mostrarArray(int *vetor);
 void mostrarOpcoes();
 void lerOpcao(int *opt);
 void mostrarArrayReverso(int *vetor);
@@ -20,7 +20,7 @@ void mostrarMediana(int *vetor);
 int produtoTodosOsNumeros(int *vetor);
 float porcentagemPares(int *vetor);
 int verificaSeAindaHaImpar(int iteradorAtual, int *vetor);
-void mostrarImpares();
+void mostrarImpares(int *vetor);
 int somaDosImpares(int *vetor);
 void numerosRepetidos(int *vetor, float *vetorNumerosRepetidos);
 void mostrarArrayComRepetidos(float *vetorNumerosRepetidos);
@@ -114,14 +114,16 @@ void preencherArray(int *vetor) {
 }
 
 void mostrarArray(int *vetor) {
+    printf("[");
     for (int i = 0; i < ARRAY_SIZE; i++) {
-        printf("%d ", vetor[i]);
+        printf("%d%s", vetor[i], i+1 == ARRAY_SIZE ? "]" : ", ");
     }
 }
 
 void mostrarArrayReverso(int *vetor) {
+    printf("[");
     for (int i = ARRAY_SIZE-1; i >= 0; i--) {
-        printf("%d ", vetor[i]);
+        printf("%d%s", vetor[i], i == 0 ? "]" : ", ");
     }
 }
 
@@ -229,6 +231,6 @@ void numerosRepetidos(int *vetor, float *vetorNumerosRepetidos) {
 void mostrarArrayComRepetidos(float *vetorNumerosRepetidos) {
     for (int i = 0; i < ARRAY_SIZE; i++) {
         if (vetorNumerosRepetidos[i] == valorGenerico) break;
-        printf("%.0f%s", vetorNumerosRepetidos[i], vetorNumerosRepetidos[i+1] == valorGenerico ? "\n" : ", ");
+        printf("%.0f%s", vetorNumerosRepetidos[i], vetorNumerosRepetidos[i+1] == valorGenerico ? "]" : ", ");
     }
 }
