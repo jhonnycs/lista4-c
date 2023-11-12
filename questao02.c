@@ -14,11 +14,11 @@ int main() {
         scanf("%d", &K[i]);
     }
 
-    for (int i = 0; i < kSize; i++) {
+    for (int i = 0; i < kSize-1; i++) {
         if (i % 2 == 1) {
             int aux = K[i];
-            K[i] = K[i - 1];
-            K[i - 1] = aux;
+            K[i] = K[i + 1];
+            K[i + 1] = aux;
         }
     }
 
