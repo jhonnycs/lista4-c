@@ -68,7 +68,6 @@ int main() {
     case 7:
         float vetorNumerosRepetidos[ARRAY_SIZE];
         numerosRepetidos(vetor, vetorNumerosRepetidos);
-        float valorGenerico = 0.1;
         if (vetorNumerosRepetidos[0] != valorGenerico) {
             printf("O array digitado possui números repetidos. São eles:\n");
             mostrarArrayComRepetidos(vetorNumerosRepetidos);
@@ -231,6 +230,6 @@ void numerosRepetidos(int *vetor, float *vetorNumerosRepetidos) {
 void mostrarArrayComRepetidos(float *vetorNumerosRepetidos) {
     for (int i = 0; i < ARRAY_SIZE; i++) {
         if (vetorNumerosRepetidos[i] == valorGenerico) break;
-        printf("%.0f%s", vetorNumerosRepetidos[i], vetorNumerosRepetidos[i+1] == valorGenerico ? "]" : ", ");
+        printf("%.0f%s", vetorNumerosRepetidos[i], vetorNumerosRepetidos[i+1] == valorGenerico ? "\n" : ", ");
     }
 }

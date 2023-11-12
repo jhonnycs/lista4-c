@@ -2,7 +2,7 @@
 
 /*
     Dado um vetor com N números inteiros (máximo 10 elementos), ordenar
-   crescentemente os números nesse vetor.
+    crescentemente os números nesse vetor.
 */
 
 void ordenarArray(int *array, int arraySize);

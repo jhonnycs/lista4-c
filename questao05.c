@@ -29,7 +29,7 @@ int main() {
             }
         }
 
-        if (!isntPrime && K[i] != 1) {
+        if (!isntPrime && K[i] != 1 && K[i] != 0) {
             inserirNoArray(K[i], P);
         }
     }
@@ -66,7 +66,7 @@ void lerVetor(int* K) {
         scanf("%d", &K[i]);
 
         while (K[i] < 0) {
-            printf("Por favor, digite número positivo:\n> ");
+            printf("Por favor, digite número não negativo:\n> ");
             scanf("%d", &K[i]);
         }
     }

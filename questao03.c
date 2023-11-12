@@ -17,21 +17,19 @@ int main() {
         scanf("%d", &vetor[i]);
     }
 
-    printf("Vetor antes da troca:\n\n");
-    printf("\n[");
+    printf("Vetor antes da troca:\n");
+    printf("[");
     for (int i = 0; i < vetorSize; i++) {
         printf("%d%s", vetor[i], i+1 == vetorSize ? "]" : ", ");
     }
 
-    for (int i = 0; i < vetorSize; i++) {
-        if (i >= vetorSize / 2) break;
-
+    for (int i = 0; i < vetorSize / 2; i++) {
         int aux = vetor[i];
         vetor[i] = vetor[vetorSize - i - 1];
         vetor[vetorSize - i - 1] = aux;
     }
 
-    printf("\nVetor depois da troca:\n");
+    printf("\n\nVetor depois da troca:\n");
     printf("[");
     for (int i = 0; i < vetorSize; i++) {
         printf("%d%s", vetor[i], i+1 == vetorSize ? "]" : ", ");

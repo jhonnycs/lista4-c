@@ -11,7 +11,7 @@
 */
 
 #define GABARITO_RESPOSTA_SIZE 10
-#define NUM_ALUNOS 3
+#define NUM_ALUNOS 50
 
 void capturarGabaritoQuestao(char *gabarito);
 void capturarRespostaAluno(char *respostas, int aluno);
@@ -73,9 +73,9 @@ void calcularNotaAlunos(char *gabarito, char *respostas) {
         printf("\nNota do aluno %d: %d\n", i + 1, nota);
 
         if (nota >= 6) {
-            printf("Aluno %d aprovado", i + 1);
+            printf("Aluno %d aprovado\n\n", i + 1);
         } else {
-            printf("Aluno %d reprovado", i + 1);
+            printf("Aluno %d reprovado\n\n", i + 1);
         }
     }
     printf("\n");
