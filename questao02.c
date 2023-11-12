@@ -14,9 +14,6 @@ int main() {
         scanf("%d", &K[i]);
     }
 
-    int menorElemento = K[0];
-    int posicao;
-
     for (int i = 0; i < kSize; i++) {
         if (i % 2 == 1) {
             int aux = K[i];
