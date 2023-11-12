@@ -62,7 +62,7 @@ void popularArrayPrimos(int* P) {
 
 void lerVetor(int* K) {
     for (int i = 0; i < K_P_SIZE; i++) {
-        printf("Digite o valor %d:\n> ", i + 1);
+        printf("Digite o elemento número %d:\n> ", i + 1);
         scanf("%d", &K[i]);
 
         while (K[i] < 0) {

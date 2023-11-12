@@ -45,7 +45,7 @@ void lerQuantNumeros(int *quantNumeros) {
 
 void lerArray(int *array, int tamanho) {
     for (int i = 0; i < tamanho; i++) {
-        printf("Digite o número %d:\n> ", i + 1);
+        printf("Digite o elemento número %d:\n> ", i + 1);
         scanf("%d", &array[i]);
     }
 }
