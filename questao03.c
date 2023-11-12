@@ -13,13 +13,14 @@ int main() {
     int vetorSize = sizeof(vetor) / sizeof(vetor[0]);
 
     for (int i = 0; i < vetorSize; i++) {
-        printf("Digite o número %d:\n> ", i + 1);
+        printf("Digite o elemento número %d:\n> ", i + 1);
         scanf("%d", &vetor[i]);
     }
 
     printf("Vetor antes da troca:\n\n");
+    printf("\n[");
     for (int i = 0; i < vetorSize; i++) {
-        printf("%d\n", vetor[i]);
+        printf("%d%s", vetor[i], i+1 == vetorSize ? "]" : ", ");
     }
 
     for (int i = 0; i < vetorSize; i++) {
@@ -30,9 +31,10 @@ int main() {
         vetor[vetorSize - i - 1] = aux;
     }
 
-    printf("\nVetor depois da troca:\n\n");
+    printf("\nVetor depois da troca:\n");
+    printf("[");
     for (int i = 0; i < vetorSize; i++) {
-        printf("%d\n", vetor[i]);
+        printf("%d%s", vetor[i], i+1 == vetorSize ? "]" : ", ");
     }
 
     return 0;

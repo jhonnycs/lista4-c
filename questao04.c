@@ -11,7 +11,7 @@
 */
 
 #define GABARITO_RESPOSTA_SIZE 10
-#define NUM_ALUNOS 50
+#define NUM_ALUNOS 3
 
 void capturarGabaritoQuestao(char *gabarito);
 void capturarRespostaAluno(char *respostas, int aluno);

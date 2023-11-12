@@ -12,7 +12,7 @@ int main() {
     int nSize = sizeof(N) / sizeof(N[0]);
 
     for (int i = 0; i < nSize; i++) {
-        printf("Digite o número %d:\n> ", i + 1);
+        printf("Digite o elemento número %d:\n> ", i + 1);
         scanf("%d", &N[i]);
     }
 
