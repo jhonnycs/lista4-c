@@ -18,7 +18,7 @@ int main() {
     lerTamanhoSequencia(&tamanho);
 
     int sequencia[tamanho];
-    lerSequencia(sequencia, tamanho);
+    lerArray(sequencia, tamanho);
 
     int somaSegmento = somarSegmentoMaximo(sequencia, tamanho);
     printf("\nA soma do segmento de soma máxima é %d", somaSegmento);
@@ -65,7 +65,7 @@ int somarSegmentoMaximo(int *array, int tamanho) {
 // algoritmo mais eficiente, porém menos intuitivo
 int kadane(int *array, int tamanho) {
     int maxSoma = array[0];
-    int somaAtual = 0;
+    int somaAtual = array[0];
     for (int i = 0; i < tamanho; i++) {
         somaAtual = somaAtual + array[i];
         if (array[i] > somaAtual) {

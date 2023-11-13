@@ -14,7 +14,7 @@ int contarPalavras(char *frase);
 int main() {
     char frase[ARRAY_SIZE];
 
-    printf("Digite uma frase:\n> ");
+    printf("Digite uma frase (máximo de %d caracteres):\n> ", ARRAY_SIZE-2);
     fgets(frase, ARRAY_SIZE - 1, stdin);
 
     removerEspacosRepetidos(frase);

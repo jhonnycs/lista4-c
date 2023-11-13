@@ -4,7 +4,7 @@
 
 /*
     Dada  uma  string  digitada  pelo  usuário, converta  a  primeira  letra
-    de cada  palavra  para maiúscula.
+    de cada  palavra para maiúscula.
 */
 
 #define ARRAY_SIZE 100
@@ -14,7 +14,7 @@ void toUpperCase(char *string);
 int main() {
     char string[ARRAY_SIZE];
 
-    printf("Digite uma frase:\n> ");
+    printf("Digite uma frase (máximo de %d caracteres):\n> ", ARRAY_SIZE-1);
     fgets(string, ARRAY_SIZE, stdin);
 
     toUpperCase(string);

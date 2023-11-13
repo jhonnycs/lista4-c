@@ -16,20 +16,25 @@ int main() {
     }
 
     int min = array[0];
+    int posMin = 0;
     int max = array[0];
+    int posMax = 0;
 
     for (int i = 0; i < ARRAY_SIZE; i++) {
         if (array[i] < min) {
             min = array[i];
+            posMin = i;
         }
-
         if (array[i] > max) {
             max = array[i];
+            posMax = i;
         }
     }
 
     printf("\nO menor valor do vetor é: %d\n", min);
-    printf("O maior valor do vetor é: %d", max);
+    printf("sua posição no vetor é: %d\n", posMin);
+    printf("\nO maior valor do vetor é: %d\n", max);
+    printf("sua posição é no vetor é: %d", posMax);
 
     return 0;
 }

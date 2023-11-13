@@ -22,10 +22,9 @@ void contarOcorrencias(float *array, int tamanho);
 
 int main() {
     int quantValores;
-    float sequencia[quantValores];
-
     lerTamanhoSequencia(&quantValores);
 
+    float sequencia[quantValores];
     lerArray(sequencia, quantValores);
 
     ordenarArray(sequencia, quantValores);

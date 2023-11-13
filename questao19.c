@@ -18,9 +18,9 @@ int main() {
     char frase[FRASE_SIZE];
     char palavra[PALAVRA_SIZE];
 
-    printf("Digite a frase para analisar:\n> ");
+    printf("Digite a frase para analisar (máximo de %d caracteres):\n> ", FRASE_SIZE-1);
     fgets(frase, FRASE_SIZE, stdin);
-    printf("\nDigite a palavra para contá-la na frase:\n> ");
+    printf("\nDigite a palavra para contá-la na frase (máximo de %d caracteres):\n> ", PALAVRA_SIZE-1);
     fgets(palavra, PALAVRA_SIZE, stdin);
 
     removerEnter(frase);

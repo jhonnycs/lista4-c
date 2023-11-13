@@ -28,11 +28,21 @@ int main() {
     for (int i = 0; i < numDigitos; i++) {
         printf("Digite o dígito %d do número 1:\n> ", i + 1);
         scanf("%d", &num1[i]);
+
+        while (num1[i] < 0) {
+            printf("Por favor, não digite um númeron negativo.\n> ");
+            scanf("%d", &num1[i]);
+        }
     }
 
     for (int i = 0; i < numDigitos; i++) {
         printf("Digite o dígito %d do número 2:\n> ", i + 1);
         scanf("%d", &num2[i]);
+
+        while (num2[i] < 0) {
+            printf("Por favor, não digite um númeron negativo.\n> ");
+            scanf("%d", &num2[i]);
+        }
     }
 
     int carryIn = 0;

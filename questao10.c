@@ -5,7 +5,7 @@
     maior valor do vetor. Mostrar o vetor após os cálculos.
 */
 
-#define ARRAY_SIZE 6
+#define ARRAY_SIZE 15
 
 int main() {
     int array[ARRAY_SIZE];

@@ -12,9 +12,9 @@ void mostrarArray(int *array, int quantNumeros);
 
 int main() {
     int quantNumeros;
-    int array[quantNumeros];
-
     lerQuantNumeros(&quantNumeros);
+
+    int array[quantNumeros];
     lerArray(array, quantNumeros);
 
     printf("Array antes de ser ordenado:\n");
